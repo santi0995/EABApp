@@ -1,8 +1,8 @@
-import { Text, TextInput, View } from 'react-native';
+import { Text, TextInput, View } from "react-native";
 
-import Label from '../label';
+import Label from "../label";
 import colors from "../../utils/colors";
-import { styles } from './styles';
+import { styles } from "./styles";
 
 const Input = ({
   editable,

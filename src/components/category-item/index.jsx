@@ -1,6 +1,6 @@
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from "react-native";
 
-import { styles } from './styles';
+import { styles } from "./styles";
 
 const CategoryItem = ({ item, onSelected }) => {
   return (
