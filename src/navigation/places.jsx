@@ -25,7 +25,7 @@ const PlacesNavigator = () => {
         name="Places"
         component={PlaceListScreen}
         options={({ navigation }) => ({
-          title: "Direcciones",
+          title: "Embargos a lo Bestia",
           headerRight: () => (
             <TouchableOpacity onPress={() => navigation.navigate("NewPlace")}>
               <Ionicons name="add" size={24} color={colors.black} />
