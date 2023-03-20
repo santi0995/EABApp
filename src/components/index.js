@@ -4,3 +4,4 @@ export { default as LocationSelector } from "./location-selector/index";
 export { default as MapPreview } from "./map-preview/index";
 export { default as Input } from "./input/index";
 export { default as CategoryItem } from "./category-item/index";
+export { default as ProductItem } from "./product-item/index";

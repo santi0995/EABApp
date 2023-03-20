@@ -5,7 +5,7 @@ import colors from "../../utils/colors";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: colors.white,
     marginTop: StatusBar.currentHeight,
   },
   text: {
@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
     paddingBottom: 60,
   },
   contentContainerList: {
+    paddingTop: 30,
     paddingBottom: 30,
   },
 });

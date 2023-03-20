@@ -1,5 +1,5 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
-import { authReducer, categoryReducer } from "./reducers";
+import { authReducer, categoryReducer, productReducer } from "./reducers";
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 
 import placeReducer from "./place.slice";
@@ -10,6 +10,7 @@ export const store = configureStore({
     place: placeReducer,
     category: categoryReducer,
     auth: authReducer,
+    products: productReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

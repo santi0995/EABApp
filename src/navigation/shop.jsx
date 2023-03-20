@@ -1,6 +1,6 @@
+import { Categories, Products } from "../screens/index";
 import { Text, TouchableOpacity } from "react-native";
 
-import { Categories } from "../screens/index";
 import colors from "../utils/colors";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -23,7 +23,7 @@ const ShopNavigator = () => {
         headerShadowVisible: false,
       }}>
       <Stack.Screen
-        name="Categories"
+        name="Cátalogo"
         component={Categories}
         options={{
           headerShown: false,
@@ -31,23 +31,16 @@ const ShopNavigator = () => {
       />
       <Stack.Screen
         name="Products"
-        component={Categories}
+        component={Products}
         options={({ route }) => ({
           title: route.params.title,
           headerRight: () => {
             return (
               <TouchableOpacity>
-                <Text>Click here</Text>
+                <Text>Añadir</Text>
               </TouchableOpacity>
             );
           },
-        })}
-      />
-      <Stack.Screen
-        name="ProductDetail"
-        component={Categories}
-        options={({ route }) => ({
-          title: route.params.title,
         })}
       />
     </Stack.Navigator>
