@@ -8,9 +8,6 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.white,
     marginTop: StatusBar.currentHeight,
   },
-  text: {
-    color: colors.white,
-  },
   containerList: {
     flex: 1,
     paddingBottom: 60,
