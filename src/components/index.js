@@ -5,4 +5,5 @@ export { default as MapPreview } from "./map-preview/index";
 export { default as Input } from "./input/index";
 export { default as CategoryItem } from "./category-item/index";
 export { default as ProductItem } from "./product-item/index";
+export { default as ProductI } from "./product/index";
 export { default as Options } from "./options/index";

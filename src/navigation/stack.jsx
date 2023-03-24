@@ -1,10 +1,11 @@
-import { Categories, Products } from "../screens";
+import { CreateTraspasoIndirecto, Directos, Indirectos, Portes } from "../screens";
 
-import CreateTraspaso from "../screens/createTraspasos";
+import CreateTraspasoDirecto from "../screens/createTraspasoDirecto";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Options } from "../components";
 import React from "react";
 import { TouchableOpacity } from "react-native";
+import Traspasos from "../screens/traspasos/index";
 import colors from "../utils/colors";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -37,24 +38,56 @@ function MyStack() {
       />
       <HomeStackNavigator.Screen
         name="Traspasos"
-        component={Categories}
+        component={Traspasos}
+        options={{
+          headerBackTitleVisible: false,
+        }}
+      />
+      <HomeStackNavigator.Screen
+        name="Portes"
+        component={Portes}
         options={{
           headerBackTitleVisible: false,
         }}
       />
       <HomeStackNavigator.Screen
         name="Products"
-        component={Products}
+        component={Directos}
         options={({ navigation }) => ({
           title: "Directos",
           headerRight: () => (
-            <TouchableOpacity onPress={() => navigation.navigate("Agregar")}>
+            <TouchableOpacity onPress={() => navigation.navigate("Agregar Directo")}>
               <MaterialCommunityIcons name="plus" size={24} color={colors.primary} />
             </TouchableOpacity>
           ),
         })}
       />
-      <HomeStackNavigator.Screen name="Agregar" component={CreateTraspaso} />
+      <HomeStackNavigator.Screen
+        name="Indirectos"
+        component={Indirectos}
+        options={({ navigation }) => ({
+          title: "Indirectos",
+          headerRight: () => (
+            <TouchableOpacity onPress={() => navigation.navigate("Agregar Indirecto")}>
+              <MaterialCommunityIcons name="plus" size={24} color={colors.primary} />
+            </TouchableOpacity>
+          ),
+        })}
+      />
+      <HomeStackNavigator.Screen
+        name="Agregar Directo"
+        component={CreateTraspasoDirecto}
+        options={{
+          headerBackTitleVisible: false,
+        }}
+      />
+      <HomeStackNavigator.Screen
+        name="Agregar Indirecto"
+        component={CreateTraspasoIndirecto}
+        options={{
+          headerBackTitleVisible: false,
+        }}
+      />
     </HomeStackNavigator.Navigator>
   );
 }

@@ -21,7 +21,7 @@ const Options = () => {
       <View style={styles.container}>
         <TouchableOpacity
           style={{ ...styles.contentContainer, backgroundColor: colors.secondary }}
-          onPress={() => navigation.navigate("")}>
+          onPress={() => navigation.navigate("Portes")}>
           <Text style={styles.title}>Portes</Text>
         </TouchableOpacity>
       </View>

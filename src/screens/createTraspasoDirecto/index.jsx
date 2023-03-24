@@ -23,13 +23,13 @@ const CreateTraspaso = (props) => {
       alert("Todos los campos deben estar completos");
     } else {
       try {
-        await addDoc(collection(db, "Traspasos"), {
+        await addDoc(collection(db, "Directos"), {
           tienda: state.tienda,
           articulo: state.articulo,
           cantidad: state.cantidad,
         });
         props.navigation.navigate("Products");
-        alert("Saved")
+        alert("Saved");
       } catch (error) {
         console.error(error);
       }
