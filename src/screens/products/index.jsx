@@ -1,24 +1,48 @@
+import { Avatar, ListItem } from "react-native-elements"
+import { Button, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
 import { collection, getDocs } from "firebase/firestore";
 
+import { ScrollView } from "react-native";
 import db from "../../constants/firebase/firebase";
 import { styles } from "./styles";
 
 const Product = ({ navigation }) => {
   const [traspasos, setTraspasos] = useState([]);
-  const querySnapshot = getDocs(collection(db, "Traspasos"));
-  useEffect(async () => {
-    const querySnapshot = await getDocs(collection(db, "users"));
-querySnapshot.forEach((doc) => {
-  console.log(`${doc.id} => ${doc.data()}`);
-});
+  
+  useEffect(() => {
+    db.collection("Traspasos").onSnapshot((querySnapshot) => {
+      const users = [];
+      querySnapshot.docs.forEach((doc) => {
+        const { tienda, articulo, cantidad } = doc.data();
+        users.push({
+          id: doc.id,
+          tienda,
+          articulo,
+          cantidad,
+        });
+      });
+      setTraspasos(users);
     });
+  }, []);
 
     return (
-      <View>
-        <Text>Hola</Text>
-      </View>
+      <ScrollView>
+        {
+          traspasos.map((traspaso) => {
+            return (
+              <ListItem 
+                key={traspaso.id}
+              >
+                <ListItem.Chevron />
+                <ListItem.Content>
+                  <ListItem.Title>{traspaso.tienda}</ListItem.Title>
+                </ListItem.Content>
+              </ListItem>
+            )
+          })
+        }
+      </ScrollView>
     );
   }
 

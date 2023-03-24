@@ -29,6 +29,7 @@ const CreateTraspaso = (props) => {
           cantidad: state.cantidad,
         });
         props.navigation.navigate("Products");
+        alert("Saved")
       } catch (error) {
         console.error(error);
       }
