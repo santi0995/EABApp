@@ -10,7 +10,6 @@ export const store = configureStore({
     place: placeReducer,
     category: categoryReducer,
     auth: authReducer,
-    products: productReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

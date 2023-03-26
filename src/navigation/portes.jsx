@@ -11,7 +11,7 @@ const HomeStackNavigator = createNativeStackNavigator();
 function ScreenPortes() {
   return (
     <HomeStackNavigator.Navigator
-      initialRouteName="Portes"
+      initialRouteName="Inicio"
       screenOptions={{
         headerTintColor: colors.black,
         navigationBarColor: colors.primary,

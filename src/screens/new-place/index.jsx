@@ -1,29 +1,48 @@
 import { Button, ScrollView, Text, TextInput, View } from "react-native";
+import { addDoc, collection } from "firebase/firestore";
 
-import { LocationSelector } from "../../components";
+import Counter from "../../components/contador";
+import { ImageSelector } from "../../components";
 import colors from "../../utils/colors";
-import { createNewArticle } from "../../store/place.slice";
+import db from "../../constants/firebase/firebase";
 import { styles } from "./styles";
-import { useDispatch } from "react-redux";
 import { useState } from "react";
 
 const NewPlace = ({ navigation, props }) => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState(null);
-  const [coords, setCoords] = useState(null);
-  const dispatch = useDispatch();
 
-  const onHandlerSubmit = () => {
-    dispatch(createNewArticle(title, image, props));
-    navigation.goBack();
-  };
-  const onHandlerChange = (text) => {
-    setTitle(text);
+  const initialState = {
+    tienda: "",
+    image: "",
   };
 
-  const onLocation = (location) => {
-    setCoords(location);
+  const [state, setState] = useState(initialState);
+
+  const handleChangeText = (text, value) => {
+    setState({ ...state, [text]: value });
   };
+  const onHandleImageSelect = (imageUrl) => {
+    setImage(imageUrl);
+  };
+
+  const createNewArticle = async () => {
+    if (state.title === "" || state.image === "") {
+      alert("Todos los campos deben estar completos");
+    } else {
+      try {
+        await addDoc(collection(db, "Articulos"), {
+          tienda: state.title,
+          image: state.image,
+        });
+        props.navigation.navigate("NewPlace");
+        alert("Guardado con éxito");
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.content}>
@@ -31,15 +50,15 @@ const NewPlace = ({ navigation, props }) => {
         <TextInput
           style={styles.input}
           placeholder="Escribe el nombre del artículo"
-          onChangeText={onHandlerChange}
-          value={title}
+          onChangeText={handleChangeText}
         />
-        <LocationSelector onLocation={onLocation} isSetArticle />
+        <ImageSelector onImage={onHandleImageSelect} />
+        <Counter />
         <Button
           disabled={title.length === 0}
           color={colors.primary}
           title="Guardar"
-          onPress={onHandlerSubmit}
+          onPress={createNewArticle}
         />
       </View>
     </ScrollView>

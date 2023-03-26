@@ -1,7 +1,7 @@
 import { Image, Text, TouchableOpacity, View } from "react-native";
 
 import colors from "../../utils/colors";
-import { styles } from "./style";
+import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 
 const Categorias = () => {

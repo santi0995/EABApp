@@ -13,16 +13,6 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
-    shadowColor: "#fff",
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-
-    elevation: 3,
-    padding: 10,
   },
   title: {
     fontSize: 18,

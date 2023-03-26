@@ -3,18 +3,16 @@ import colors from "../../utils/colors";
 
 export const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 20,
-    marginVertical: 10,
-    height: 160,
-  },
-  contentContainer: {
     flex: 1,
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 10,
+    marginHorizontal: 20,
+    marginVertical: 15,
+    padding: 5,
   },
-  title: {
+  text: {
     fontSize: 18,
-    color: colors.white,
+    color: colors.secondary,
   },
 });

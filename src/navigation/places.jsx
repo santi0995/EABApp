@@ -28,19 +28,12 @@ const PlacesNavigator = () => {
           fontWeight: "bold",
         },
       }}>
-      <Stack.Screen name="Categorias" component={Categorias} />
       <Stack.Screen
-        name="Products"
-        component={Categories}
-        options={({ navigation }) => ({
-          title: "Directos",
-          headerBackTitleVisible: false,
-          headerRight: () => (
-            <TouchableOpacity onPress={() => navigation.navigate("Agregar Directo")}>
-              <MaterialCommunityIcons name="plus" size={24} color={colors.primary} />
-            </TouchableOpacity>
-          ),
-        })}
+        name="Categorias"
+        component={Categorias}
+        options={{
+          headerShown: false,
+        }}
       />
       <Stack.Screen
         name="Armarios"
