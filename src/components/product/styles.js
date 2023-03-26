@@ -7,12 +7,11 @@ export const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginVertical: 10,
     borderRadius: 10,
-    height: 110,
+    height: 120,
     backgroundColor: colors.primary,
   },
   contentContainer: {
     flex: 1,
-    justifyContent: "space-around",
   },
   title: {
     fontSize: 18,

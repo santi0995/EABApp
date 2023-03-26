@@ -16,6 +16,7 @@ const Indirectos = ({ navigation }) => {
         querySnapshot.docs.map((doc) => ({
           id: doc.id,
           tienda: doc.data().tienda,
+          tiendaD: doc.data().tiendaD,
           articulo: doc.data().articulo,
           cantidad: doc.data().cantidad,
         }))

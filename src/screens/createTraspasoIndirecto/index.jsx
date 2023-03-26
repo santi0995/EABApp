@@ -8,6 +8,7 @@ import { styles } from "./styles";
 const CreateTraspaso = (props) => {
   const initialState = {
     tienda: "",
+    tiendaD: "",
     articulo: "",
     cantidad: 0,
   };
@@ -19,17 +20,18 @@ const CreateTraspaso = (props) => {
   };
 
   const createNewTraspaso = async () => {
-    if (state.tienda === "" || state.articulo === "" || state.cantidad === "") {
+    if (state.tienda === "" || state.tiendaD === "" || state.articulo === "" || state.cantidad === "") {
       alert("Todos los campos deben estar completos");
     } else {
       try {
         await addDoc(collection(db, "Indirectos"), {
           tienda: state.tienda,
+          tiendaD: state.tiendaD,
           articulo: state.articulo,
           cantidad: state.cantidad,
         });
         props.navigation.navigate("Indirectos");
-        alert("Saved");
+        alert("Guardado con éxito");
       } catch (error) {
         console.error(error);
       }
@@ -46,6 +48,12 @@ const CreateTraspaso = (props) => {
           <TextInput
             placeholder="Tienda de origen"
             onChangeText={(value) => handleChangeText("tienda", value)}
+          />
+        </View>
+        <View style={styles.inputGroup}>
+          <TextInput
+            placeholder="Tienda de Destino"
+            onChangeText={(value) => handleChangeText("tiendaD", value)}
           />
         </View>
         <View style={styles.inputGroup}>

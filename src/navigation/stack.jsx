@@ -1,4 +1,4 @@
-import { CreateTraspasoIndirecto, Directos, Indirectos, Portes } from "../screens";
+import { Clientes, CreateCliente, CreateTraspasoIndirecto, Directos, Indirectos, Portes } from "../screens";
 
 import CreateTraspasoDirecto from "../screens/createTraspasoDirecto";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -11,7 +11,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const HomeStackNavigator = createNativeStackNavigator();
 
-function MyStack() {
+function MyStack({logOut}) {
   return (
     <HomeStackNavigator.Navigator
       initialRouteName="Inicio"
@@ -30,7 +30,7 @@ function MyStack() {
         options={({ navigation }) => ({
           title: "Embargos a lo Bestia",
           headerLeft: () => (
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={() => logOut()}>
               <MaterialCommunityIcons name="exit-run" size={24} color={colors.primary} />
             </TouchableOpacity>
           ),
@@ -49,6 +49,19 @@ function MyStack() {
         options={{
           headerBackTitleVisible: false,
         }}
+      />
+      <HomeStackNavigator.Screen
+        name="Clientes"
+        component={Clientes}
+        options={({ navigation }) => ({
+          title: "Apuntar porte",
+          headerBackTitleVisible: false,
+          headerRight: () => (
+            <TouchableOpacity onPress={() => navigation.navigate("Crear Cliente")}>
+              <MaterialCommunityIcons name="plus" size={24} color={colors.primary} />
+            </TouchableOpacity>
+          ),
+        })}
       />
       <HomeStackNavigator.Screen
         name="Products"
@@ -73,6 +86,13 @@ function MyStack() {
             </TouchableOpacity>
           ),
         })}
+      />
+      <HomeStackNavigator.Screen
+        name="Crear Cliente"
+        component={CreateCliente}
+        options={{
+          headerBackTitleVisible: false,
+        }}
       />
       <HomeStackNavigator.Screen
         name="Agregar Directo"
