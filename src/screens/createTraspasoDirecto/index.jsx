@@ -20,7 +20,12 @@ const CreateTraspaso = (props) => {
   };
 
   const createNewTraspaso = async () => {
-    if (state.tienda === "" || state.tiendaD === "" || state.articulo === "" || state.cantidad === "" ) {
+    if (
+      state.tienda === "" ||
+      state.tiendaD === "" ||
+      state.articulo === "" ||
+      state.cantidad === ""
+    ) {
       alert("Todos los campos deben estar completos");
     } else {
       try {

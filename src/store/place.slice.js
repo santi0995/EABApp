@@ -1,8 +1,10 @@
+import { addDoc, collection } from "firebase/firestore";
 import { getPlaces, insertPlace } from "../db";
 
 import Place from "../models/places";
 import { URL_GEOCODING } from "../utils/maps";
 import { createSlice } from "@reduxjs/toolkit";
+import db from "../constants/firebase/firebase";
 
 const initialState = {
   places: [],
@@ -36,7 +38,7 @@ export const savePlace = (title, image, coords) => {
       const response = await fetch(URL_GEOCODING(coords?.lat, coords?.lng));
 
       if (!response.ok) {
-        throw new Error("No se ha podido conectar cone el servicio de geolocalización");
+        throw new Error("No se ha podido conectar con el servicio de geolocalización");
       }
 
       const data = await response.json();
@@ -50,6 +52,23 @@ export const savePlace = (title, image, coords) => {
       console.log(error);
     }
   };
+};
+
+export const createNewArticle = async (title, image, props) => {
+  if (title === "" || image === null) {
+    alert("Todos los campos deben estar completos");
+  } else {
+    try {
+      await addDoc(collection(db, "Articulos"), {
+        tienda: title,
+        image,
+      });
+      props.navigation.navigate("NewPlace");
+      alert("Guardado con éxito");
+    } catch (error) {
+      console.error(error);
+    }
+  }
 };
 
 export const loadPlaces = () => {

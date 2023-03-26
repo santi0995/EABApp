@@ -1,7 +1,14 @@
-import { MapsScreen, NewPlaceScreen, PlaceDetailScreen, PlaceListScreen } from "../screens/index";
+import {
+  Categories,
+  MapsScreen,
+  NewPlaceScreen,
+  PlaceDetailScreen,
+  PlaceListScreen,
+} from "../screens/index";
 import { Platform, TouchableOpacity } from "react-native";
 
-import Ionicons from "@expo/vector-icons/Ionicons";
+import { Categorias } from "../components";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
 import colors from "../utils/colors";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -11,7 +18,7 @@ const Stack = createNativeStackNavigator();
 const PlacesNavigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Place"
+      initialRouteName="Places"
       screenOptions={{
         headerStyle: {
           backgroundColor: Platform.OS === "android" ? colors.primary : colors.secondary,
@@ -21,14 +28,28 @@ const PlacesNavigator = () => {
           fontWeight: "bold",
         },
       }}>
+      <Stack.Screen name="Categorias" component={Categorias} />
       <Stack.Screen
-        name="Places"
-        component={PlaceListScreen}
+        name="Products"
+        component={Categories}
         options={({ navigation }) => ({
-          title: "Embargos a lo Bestia",
+          title: "Directos",
+          headerBackTitleVisible: false,
+          headerRight: () => (
+            <TouchableOpacity onPress={() => navigation.navigate("Agregar Directo")}>
+              <MaterialCommunityIcons name="plus" size={24} color={colors.primary} />
+            </TouchableOpacity>
+          ),
+        })}
+      />
+      <Stack.Screen
+        name="Armarios"
+        component={Categories}
+        options={({ navigation }) => ({
+          headerBackTitleVisible: false,
           headerRight: () => (
             <TouchableOpacity onPress={() => navigation.navigate("NewPlace")}>
-              <Ionicons name="add" size={24} color={colors.black} />
+              <MaterialCommunityIcons name="plus" size={24} color={colors.primary} />
             </TouchableOpacity>
           ),
         })}
@@ -41,7 +62,7 @@ const PlacesNavigator = () => {
       <Stack.Screen
         name="NewPlace"
         component={NewPlaceScreen}
-        options={{ title: "Nueva dirección" }}
+        options={{ title: "Nuevo artículo", headerBackTitleVisible: false }}
       />
       <Stack.Screen name="Maps" component={MapsScreen} options={{ title: "Mapa" }} />
     </Stack.Navigator>

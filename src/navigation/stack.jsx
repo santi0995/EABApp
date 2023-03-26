@@ -1,9 +1,15 @@
-import { Clientes, CreateCliente, CreateTraspasoIndirecto, Directos, Indirectos, Portes } from "../screens";
+import {
+  CreateTraspasoIndirecto,
+  Directos,
+  Indirectos,
+} from "../screens";
 
 import CreateTraspasoDirecto from "../screens/createTraspasoDirecto";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Options } from "../components";
+import PlacesNavigator from './places';
 import React from "react";
+import ScreenPortes from './portes';
 import { TouchableOpacity } from "react-native";
 import Traspasos from "../screens/traspasos/index";
 import colors from "../utils/colors";
@@ -11,7 +17,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const HomeStackNavigator = createNativeStackNavigator();
 
-function MyStack({logOut}) {
+const logOut = ({ navigation }) => (
+  <TouchableOpacity onPress={() => {}}>
+    <MaterialCommunityIcons name="exit-run" size={24} color={colors.primary} />
+  </TouchableOpacity>
+);
+
+function MyStack() {
   return (
     <HomeStackNavigator.Navigator
       initialRouteName="Inicio"
@@ -27,14 +39,24 @@ function MyStack({logOut}) {
       <HomeStackNavigator.Screen
         name="Inicio"
         component={Options}
-        options={({ navigation }) => ({
+        options={(nav) => ({
           title: "Embargos a lo Bestia",
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => logOut()}>
-              <MaterialCommunityIcons name="exit-run" size={24} color={colors.primary} />
-            </TouchableOpacity>
-          ),
+          headerLeft: () => logOut(nav),
         })}
+      />
+      <HomeStackNavigator.Screen
+        name="Catálogo"
+        component={PlacesNavigator}
+        options={{
+          headerBackTitleVisible: false,
+        }}
+      />
+      <HomeStackNavigator.Screen
+        name="Portes"
+        component={ScreenPortes}
+        options={{
+          headerBackTitleVisible: false,
+        }}
       />
       <HomeStackNavigator.Screen
         name="Traspasos"
@@ -42,26 +64,6 @@ function MyStack({logOut}) {
         options={{
           headerBackTitleVisible: false,
         }}
-      />
-      <HomeStackNavigator.Screen
-        name="Portes"
-        component={Portes}
-        options={{
-          headerBackTitleVisible: false,
-        }}
-      />
-      <HomeStackNavigator.Screen
-        name="Clientes"
-        component={Clientes}
-        options={({ navigation }) => ({
-          title: "Apuntar porte",
-          headerBackTitleVisible: false,
-          headerRight: () => (
-            <TouchableOpacity onPress={() => navigation.navigate("Crear Cliente")}>
-              <MaterialCommunityIcons name="plus" size={24} color={colors.primary} />
-            </TouchableOpacity>
-          ),
-        })}
       />
       <HomeStackNavigator.Screen
         name="Products"
@@ -86,13 +88,6 @@ function MyStack({logOut}) {
             </TouchableOpacity>
           ),
         })}
-      />
-      <HomeStackNavigator.Screen
-        name="Crear Cliente"
-        component={CreateCliente}
-        options={{
-          headerBackTitleVisible: false,
-        }}
       />
       <HomeStackNavigator.Screen
         name="Agregar Directo"

@@ -1,11 +1,11 @@
+/* eslint-disable no-undef */
 import { Text, TouchableOpacity, View } from "react-native";
 
 import React from "react";
 import colors from "../../utils/colors";
 import { styles } from "./styles";
 
-let mesActual = new Intl.DateTimeFormat('es-ES', { month: 'long'}).format(new Date());
-
+const mesActual = new Intl.DateTimeFormat("es-ES", { month: "long" }).format(new Date());
 
 const Portes = ({ navigation }) => {
   return (
@@ -18,8 +18,6 @@ const Portes = ({ navigation }) => {
             <Text style={styles.title}>{mesActual}</Text>
           </View>
         </TouchableOpacity>
-      </View>
-      <View style={styles.container}>
       </View>
     </>
   );

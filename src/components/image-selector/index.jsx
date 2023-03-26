@@ -44,7 +44,7 @@ const ImageSelector = ({ onImage }) => {
           <Image style={styles.image} source={{ uri: pickedUrl }} />
         )}
       </View>
-      <Button title="seleccionar imagen" color={colors.primary} onPress={onHandleTakeImage} />
+      <Button title="Seleccionar imagen" color={colors.primary} onPress={onHandleTakeImage} />
     </View>
   );
 };

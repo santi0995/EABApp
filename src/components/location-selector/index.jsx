@@ -8,7 +8,7 @@ import MapPreview from "../map-preview/index";
 import colors from "../../utils/colors";
 import { styles } from "./styles";
 
-const LocationSelector = ({ onLocation }) => {
+const LocationSelector = ({ onLocation, isSetArticle }) => {
   const navigation = useNavigation();
   const route = useRoute();
 
@@ -58,11 +58,15 @@ const LocationSelector = ({ onLocation }) => {
         <Text style={styles.text}>No hay ninguna ubicación seleccionada</Text>
       </MapPreview>
       <Button title="Seleccionar ubicación" onPress={onHandleGetLocation} colors={colors.primary} />
-      <Button
-        title="Seleccionar desde mapa"
-        onPress={onHandlerMapsLocation}
-        colors={colors.secondary}
-      />
+      {isSetArticle ? (
+        <></>
+      ) : (
+        <Button
+          title="Seleccionar desde mapa"
+          onPress={onHandlerMapsLocation}
+          colors={colors.secondary}
+        />
+      )}
     </View>
   );
 };

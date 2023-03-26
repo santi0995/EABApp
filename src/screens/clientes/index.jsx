@@ -30,7 +30,7 @@ const Clientes = ({ navigation }) => {
   return (
     <>
       {clientes.map((cliente) => (
-        <ProductI key={cliente.id} {...cliente} database="Clientes" isCliente={true}/>
+        <ProductI key={cliente.id} {...cliente} database="Clientes" isCliente />
       ))}
     </>
   );
